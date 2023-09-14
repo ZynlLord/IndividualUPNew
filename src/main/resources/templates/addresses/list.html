@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addresses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<h2>Addresses</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Zip Code</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="address : ${addresses}">
+        <td th:text="${address.id}"></td>
+        <td th:text="${address.street}"></td>
+        <td th:text="${address.city}"></td>
+        <td th:text="${address.zipCode}"></td>
+        <td><a th:href="@{/addresses/{id}/edit(id=${address.id})}">Edit</a></td>
+        <td><a th:href="@{/addresses/{id}/delete(id=${address.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/addresses/create">Add Address</a>
+</body>
+</html>

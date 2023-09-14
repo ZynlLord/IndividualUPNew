@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Edit Book</h2>
+<form th:action="@{/books/{id}/edit(id=${book.id})}" th:object="${book}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" th:field="*{title}" required>
+    </div>
+
+    <div>
+        <label for="pageCount">Page Count:</label>
+        <input type="number" id="pageCount" name="pageCount" th:field="*{pageCount}" required>
+    </div>
+
+    <div>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" th:field="*{genre}" required>
+    </div>
+
+    <div>
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" th:field="*{language}" required>
+    </div>
+
+    <div>
+        <label for="author">Author:</label>
+        <select id="author" name="author.id" th:field="*{author.id}" required>
+            <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="library">Library:</label>
+        <select id="library" name="library.id" th:field="*{library.id}" required>
+            <option th:each="library : ${libraries}" th:value="${library.id}" th:text="${library.name}"></option>
+        </select>
+    </div>
+
+    <button type="submit">Update</button>
+</form>
+<a href="/books">Back to List</a>
+</body>
+</html>

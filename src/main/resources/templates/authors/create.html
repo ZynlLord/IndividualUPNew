@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Author</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Create Author</h2>
+<form th:action="@{/authors/create}" th:object="${author}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="birthYear">Birth Year:</label>
+        <input type="number" id="birthYear" name="birthYear" th:field="*{birthYear}" required>
+    </div>
+    <div>
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" name="nationality" th:field="*{nationality}" required>
+    </div>
+    <div>
+        <label for="biography">Biography:</label>
+        <textarea id="biography" name="biography" th:field="*{biography}" required></textarea>
+    </div>
+    <button type="submit">Create</button>
+</form>
+<a href="/authors">Back to List</a>
+</body>
+</html>

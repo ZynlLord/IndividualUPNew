@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Address</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Edit Address</h2>
+<form th:action="@{/addresses/{id}/edit(id=${address.id})}" th:object="${address}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" th:field="*{street}" required>
+    </div>
+    <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" th:field="*{city}" required>
+    </div>
+    <div>
+        <label for="zipCode">Zip Code:</label>
+        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}" required>
+    </div>
+    <button type="submit">Update</button>
+</form>
+<a href="/addresses">Back to List</a>
+</body>
+</html>

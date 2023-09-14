@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<h2>Edit Person</h2>
+<form th:action="@{/persons/{id}/edit(id=${person.id})}" th:object="${person}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" th:field="*{age}" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <select id="address" name="address.id" th:field="*{address.id}" required>
+            <option th:each="address : ${addresses}" th:value="${address.id}" th:text="${address.street}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="books">Books:</label>
+        <select id="books" name="books" th:field="*{books}" multiple="multiple" required>
+            <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.title}"></option>
+        </select>
+    </div>
+    <button type="submit">Update</button>
+</form>
+<a href="/persons">Back to List</a>
+</body>
+</html>

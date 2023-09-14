@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Edit Library</h2>
+<form th:action="@{/libraries/{id}/edit(id=${library.id})}" th:object="${library}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+    </div>
+
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" th:field="*{location}" required>
+    </div>
+
+    <div>
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" th:field="*{capacity}" required>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" th:field="*{description}" required></textarea>
+    </div>
+
+    <button type="submit">Update</button>
+</form>
+<a href="/libraries">Back to List</a>
+</body>
+</html>
